@@ -16,11 +16,9 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  late String _userEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -50,24 +48,13 @@ class _BodyState extends State<Body> {
               ),
               RoundedButton(
                 text: "SIGNUP",
-                press: () {
-                  if (_formKey.currentState!.validate()) {
-                    _register(context);
-                  }
-                },
+                press: () {},
               ),
               SizedBox(height: size.height * 0.03),
               AlreadyHaveAnAccountCheck(
                 login: false,
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginScreen();
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, 'loginScreen');
                 },
               ),
               OrDivider(),
@@ -93,30 +80,5 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
-  }
-
-  void _register(BuildContext context) async {
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-      _userEmail = userCredential.user!.email.toString();
-      snackBarBuilder(text: "Successfully registered $_userEmail");
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        snackBarBuilder(text: "The password provided is too weak");
-      } else if (e.code == 'email-already-in-use') {
-        snackBarBuilder(text: "Email already in use");
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  ScaffoldFeatureController snackBarBuilder({required String text}) {
-    ScaffoldFeatureController snackBar = ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(text)));
-    return snackBar;
   }
 }

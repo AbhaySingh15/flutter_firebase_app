@@ -2,24 +2,32 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Firebase {
-  static final FirebaseAuth auth = FirebaseAuth.instance;
-  void _register(BuildContext context, TextEditingController email,
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  void register(BuildContext context, TextEditingController email,
       TextEditingController password) async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email.text,
         password: password.text,
       );
-      //_userEmail = userCredential.user!.email.toString();
-      snackBarBuilder(text: "Successfully registered");
+
+      snackBarBuilder(context: context, text: "Successfully registered");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        snackBarBuilder(text: "The password provided is too weak");
+        snackBarBuilder(
+            context: context, text: "The password provided is too weak");
       } else if (e.code == 'email-already-in-use') {
-        snackBarBuilder(text: "Email already in use");
+        snackBarBuilder(context: context, text: "Email already in use");
       }
     } catch (e) {
       print(e);
     }
   }
+}
+
+ScaffoldFeatureController snackBarBuilder(
+    {required BuildContext context, required String text}) {
+  ScaffoldFeatureController snackBar =
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+  return snackBar;
 }
