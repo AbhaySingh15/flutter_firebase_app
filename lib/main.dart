@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
-import 'Utils/authentication.dart';
 import 'components/routes.dart';
 
 void main() {
@@ -24,7 +23,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
       ),
       routes: {
-        '/': Routes.welcomeScreen,
+        '/': Routes.firebaseAuthentication,
         '/welcomeScreen': Routes.welcomeScreen,
         '/signUpScreen': Routes.signUpScreen,
         '/loginScreen': Routes.loginScreen,
