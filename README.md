@@ -1,13 +1,20 @@
-# Welcome page, Login Page and Sign up page - Flutter UI
-
-## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
+# Flutter firebase authentication app with provider implementation
 
 **Packages we are using:**
 
 - flutter_svg: [link](https://pub.dev/packages/flutter_svg)
+- firebase_auth: [link](https://pub.dev/packages/firebase_auth)
+- firebase_core: [link](https://pub.dev/packages/firebase_core)
+- provider: [link](https://pub.dev/packages/provider)
 
-We design 3 screens first one is a welcome screen like then user open your app it shows then users have two options, if he has an account then press the login button and it just shifts him to the login screen or if he or she don't have an account then press signup button its transfers to the signup screen.
+**About**
+A simple login/signup flutter app for firebase authentication with provider implementation.
 
-### Auth UI
 
-![App UI](/UI.png)
+**There are 4 screens in this app**
+- Welcome Screen - To prompt a user if they want to login or signup
+- Login Screen - To login an existing user 
+- Signup Screen - To signup a new user
+- Loggedin Screen - To show a confirmation screen(that a user has successfully signed in) with a sign out button
+
+
