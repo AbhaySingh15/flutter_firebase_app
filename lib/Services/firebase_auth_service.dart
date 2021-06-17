@@ -2,12 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Services/auth_service.dart';
 
+typedef Snack = ScaffoldFeatureController;
+
 class FirebaseAuthService with ChangeNotifier implements AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  ScaffoldFeatureController snackBarBuilder(
-      {required BuildContext context, required String text}) {
-    ScaffoldFeatureController snackBar = ScaffoldMessenger.of(context)
+  Snack snackBarBuilder({required BuildContext context, required String text}) {
+    Snack snackBar = ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(text)));
     return snackBar;
   }
