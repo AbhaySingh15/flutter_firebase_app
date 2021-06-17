@@ -19,8 +19,6 @@ class MyAppUser {
 }
 
 abstract class AuthService {
-  Future<MyAppUser> currentUser();
-
   Future<bool> signInWithEmailAndPassword(
       {required BuildContext context,
       required String email,
@@ -29,8 +27,6 @@ abstract class AuthService {
       {required BuildContext context,
       required String email,
       required String password});
-
   Future<void> signOut();
-
   void dispose();
 }

@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
               SizedBox(height: size.height * 0.03),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Navigator.pushNamed(context, '/welcomeScreen');
+                  Navigator.pushNamed(context, '/signUpScreen');
                 },
               ),
             ],
