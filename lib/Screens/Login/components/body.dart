@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
+import 'package:flutter_auth/Services/firebase_auth_service.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -40,7 +42,19 @@ class Body extends StatelessWidget {
               ),
               RoundedButton(
                 text: "LOGIN",
-                press: () {},
+                press: () async {
+                  if (_formKey.currentState!.validate()) {
+                    bool loggedIn = await Provider.of<FirebaseAuthService>(
+                            context,
+                            listen: false)
+                        .signInWithEmailAndPassword(
+                            context: context,
+                            email: _emailController.text,
+                            password: _passwordController.text);
+                    if (loggedIn)
+                      Navigator.pushNamed(context, '/loggedInScreen');
+                  }
+                },
               ),
               SizedBox(height: size.height * 0.03),
               AlreadyHaveAnAccountCheck(
