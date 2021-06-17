@@ -7,11 +7,11 @@
 - firebase_core: [link](https://pub.dev/packages/firebase_core)
 - provider: [link](https://pub.dev/packages/provider)
 
-**About**
-A simple login/signup flutter app for firebase authentication with provider implementation.
+**About:**
+  A simple login/signup flutter app for firebase authentication with provider implementation.
 
 
-**There are 4 screens in this app**
+**There are 4 screens in this app:**
 - Welcome Screen - To prompt a user if they want to login or signup
 - Login Screen - To login an existing user 
 - Signup Screen - To signup a new user
