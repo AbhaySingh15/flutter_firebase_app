@@ -16,7 +16,7 @@ class LoggedIN extends StatelessWidget {
                 onPressed: () {
                   Provider.of<FirebaseAuthService>(context, listen: false)
                       .signOut();
-                  Navigator.pushNamed(context, '/welcomeScreen');
+                  Navigator.pushNamed(context, '/loginScreen');
                 },
                 child: Text("Sign out")),
           )
