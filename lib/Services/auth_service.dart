@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
@@ -30,6 +28,6 @@ abstract class AuthService {
       required String password});
   Future<void> signOut();
   Future<void> signInWithFacebook(BuildContext context);
-  Future<UserCredential> signInWithGoogle();
+  Future<void> signInWithGoogle(BuildContext context);
   void dispose();
 }

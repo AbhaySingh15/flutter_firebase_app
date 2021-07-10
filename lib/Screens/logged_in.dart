@@ -7,20 +7,38 @@ class LoggedIN extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<FirebaseAuthService>(context, listen: false)
+        .getFireBaseAuth()
+        .currentUser;
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: ElevatedButton(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FadeInImage.assetNetwork(
+              placeholder: 'assets/gifs/loading.gif',
+              image: '${user!.photoURL}',
+            ),
+            SizedBox(
+              height: 7,
+            ),
+            Text("Name: ${user.displayName}"),
+            SizedBox(
+              height: 7,
+            ),
+            Text("Email: ${user.email}"),
+            SizedBox(
+              height: 7,
+            ),
+            ElevatedButton(
                 onPressed: () {
                   Provider.of<FirebaseAuthService>(context, listen: false)
                       .signOut();
                   Navigator.pushNamed(context, '/loginScreen');
                 },
-                child: Text("Sign out")),
-          )
-        ],
+                child: Text("Sign out"))
+          ],
+        ),
       ),
     );
   }

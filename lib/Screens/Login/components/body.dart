@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
 import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
-import 'package:flutter_auth/Screens/logged_in.dart';
 import 'package:flutter_auth/Services/firebase_auth_service.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -85,18 +83,16 @@ class _BodyState extends State<Body> {
                           .signInWithFacebook(context);
                     },
                   ),
-                  SocalIcon(
-                    iconSrc: "assets/icons/twitter.svg",
-                    press: () {},
-                  ),
+                  // SocalIcon(
+                  //   iconSrc: "assets/icons/twitter.svg",
+                  //   press: () {},
+                  // ),
                   SocalIcon(
                     iconSrc: "assets/icons/google-plus.svg",
                     press: () async {
-                      final UserCredential =
-                          await Provider.of<FirebaseAuthService>(context,
-                                  listen: false)
-                              .signInWithGoogle();
-                      Navigator.pushNamed(context, "/loggedInScreen");
+                      await Provider.of<FirebaseAuthService>(context,
+                              listen: false)
+                          .signInWithGoogle(context);
                     },
                   ),
                 ],

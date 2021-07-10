@@ -70,7 +70,7 @@ class FirebaseAuthService with ChangeNotifier implements AuthService {
   }
 
   @override
-  Future<UserCredential> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -83,7 +83,12 @@ class FirebaseAuthService with ChangeNotifier implements AuthService {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    return await _auth.signInWithCredential(credential);
+    try {
+      await _auth.signInWithCredential(credential);
+      Navigator.pushNamed(context, "/loggedInScreen");
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -97,7 +102,11 @@ class FirebaseAuthService with ChangeNotifier implements AuthService {
       final AccessToken accessToken = result.accessToken!;
       final AuthCredential credential =
           FacebookAuthProvider.credential(accessToken.token);
-      await _auth.signInWithCredential(credential);
+      try {
+        await _auth.signInWithCredential(credential);
+      } on FirebaseAuthException catch (e) {
+        print(e);
+      }
       Navigator.pushNamed(context, "/loggedInScreen");
     } else if (result.status == LoginStatus.cancelled) {
       print("authentication cancelled by the user");
