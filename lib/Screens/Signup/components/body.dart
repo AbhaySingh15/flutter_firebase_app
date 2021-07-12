@@ -65,24 +65,27 @@ class _BodyState extends State<Body> {
                   Navigator.pushNamed(context, '/loginScreen');
                 },
               ),
-              OrDivider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SocalIcon(
-                    iconSrc: "assets/icons/facebook.svg",
-                    press: () {},
-                  ),
-                  SocalIcon(
-                    iconSrc: "assets/icons/twitter.svg",
-                    press: () {},
-                  ),
-                  SocalIcon(
-                    iconSrc: "assets/icons/google-plus.svg",
-                    press: () {},
-                  ),
-                ],
-              )
+              // OrDivider(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: <Widget>[
+              //     SocalIcon(
+              //       iconSrc: "assets/icons/facebook.svg",
+              //       press: () {},
+              //     ),
+              //     SocalIcon(
+              //       iconSrc: "assets/icons/twitter.svg",
+              //       press: () {},
+              //     ),
+              //     SocalIcon(
+              //       iconSrc: "assets/icons/google-plus.svg",
+              //       press: () {
+              //         Provider.of<FirebaseAuthService>(context, listen: false)
+              //             .signInWithGoogle();
+              //       },
+              //     ),
+              //   ],
+              // )
             ],
           ),
         ),

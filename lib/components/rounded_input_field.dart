@@ -32,11 +32,11 @@ class RoundedInputField extends StatelessWidget {
           }
         },
         controller: this.controller,
-        cursorColor: kPrimaryColor,
+        cursorColor: Consts.kPrimaryColor,
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: kPrimaryColor,
+            color: Consts.kPrimaryColor,
           ),
           hintText: hintText,
           border: InputBorder.none,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
+import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
+import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
 import 'package:flutter_auth/Services/firebase_auth_service.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -8,9 +10,16 @@ import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -30,7 +39,7 @@ class Body extends StatelessWidget {
               SizedBox(height: size.height * 0.03),
               SvgPicture.asset(
                 "assets/icons/login.svg",
-                height: size.height * 0.35,
+                height: size.height * 0.25,
               ),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
@@ -62,6 +71,32 @@ class Body extends StatelessWidget {
                   Navigator.pushNamed(context, '/signUpScreen');
                 },
               ),
+              OrDivider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SocalIcon(
+                    iconSrc: "assets/icons/facebook.svg",
+                    press: () async {
+                      await Provider.of<FirebaseAuthService>(context,
+                              listen: false)
+                          .signInWithFacebook(context);
+                    },
+                  ),
+                  // SocalIcon(
+                  //   iconSrc: "assets/icons/twitter.svg",
+                  //   press: () {},
+                  // ),
+                  SocalIcon(
+                    iconSrc: "assets/icons/google-plus.svg",
+                    press: () async {
+                      await Provider.of<FirebaseAuthService>(context,
+                              listen: false)
+                          .signInWithGoogle(context);
+                    },
+                  ),
+                ],
+              )
             ],
           ),
         ),

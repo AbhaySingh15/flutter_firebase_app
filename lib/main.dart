@@ -22,13 +22,16 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Auth',
+        //themeMode: ThemeMode.dark,
         theme: ThemeData(
-          primaryColor: kPrimaryColor,
+          primaryColor: Consts.kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
+        darkTheme: ThemeData(
+            primaryColor: Consts.kPrimaryColor, brightness: Brightness.dark),
         routes: {
           '/': Routes.firebaseAuthentication,
-          '/welcomeScreen': Routes.welcomeScreen,
+          // '/welcomeScreen': Routes.welcomeScreen,
           '/signUpScreen': Routes.signUpScreen,
           '/loginScreen': Routes.loginScreen,
           '/loggedInScreen': Routes.loggedInScreen,

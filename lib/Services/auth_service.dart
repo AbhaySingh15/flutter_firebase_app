@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
@@ -28,5 +27,7 @@ abstract class AuthService {
       required String email,
       required String password});
   Future<void> signOut();
+  Future<void> signInWithFacebook(BuildContext context);
+  Future<void> signInWithGoogle(BuildContext context);
   void dispose();
 }
