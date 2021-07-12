@@ -32,14 +32,17 @@ class _BodyState extends State<Body> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(
+                height: size.height * 0.05,
+              ),
               Text(
                 "LOGIN",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
               SizedBox(height: size.height * 0.03),
               SvgPicture.asset(
                 "assets/icons/login.svg",
-                height: size.height * 0.25,
+                height: size.height * 0.23,
               ),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
@@ -83,10 +86,10 @@ class _BodyState extends State<Body> {
                           .signInWithFacebook(context);
                     },
                   ),
-                  // SocalIcon(
-                  //   iconSrc: "assets/icons/twitter.svg",
-                  //   press: () {},
-                  // ),
+                  SocalIcon(
+                    iconSrc: "assets/icons/twitter.svg",
+                    press: () {},
+                  ),
                   SocalIcon(
                     iconSrc: "assets/icons/google-plus.svg",
                     press: () async {
