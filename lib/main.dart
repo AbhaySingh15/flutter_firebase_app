@@ -24,11 +24,11 @@ class _MyAppState extends State<MyApp> {
         title: 'Flutter Auth',
         //themeMode: ThemeMode.dark,
         theme: ThemeData(
-          primaryColor: kPrimaryColor,
+          primaryColor: Consts.kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
-        darkTheme:
-            ThemeData(primaryColor: kPrimaryColor, brightness: Brightness.dark),
+        darkTheme: ThemeData(
+            primaryColor: Consts.kPrimaryColor, brightness: Brightness.dark),
         routes: {
           '/': Routes.firebaseAuthentication,
           // '/welcomeScreen': Routes.welcomeScreen,

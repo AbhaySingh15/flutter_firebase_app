@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Services/firebase_auth_service.dart';
+import 'package:flutter_auth/Utils/constants.dart';
 import 'package:provider/provider.dart';
 
 class LoggedIN extends StatelessWidget {
@@ -15,20 +16,22 @@ class LoggedIN extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FadeInImage.assetNetwork(
-              placeholder: 'assets/gifs/loading.gif',
-              image: '${user!.photoURL}',
+            ClipOval(
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/gifs/loading.gif',
+                image: '${user!.photoURL}',
+              ),
             ),
             SizedBox(
-              height: 7,
+              height: Consts.loggedInPageMargin,
             ),
             Text("Name: ${user.displayName}"),
             SizedBox(
-              height: 7,
+              height: Consts.loggedInPageMargin,
             ),
             Text("Email: ${user.email}"),
             SizedBox(
-              height: 7,
+              height: Consts.loggedInPageMargin,
             ),
             ElevatedButton(
                 onPressed: () {
