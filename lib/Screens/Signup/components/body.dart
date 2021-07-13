@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
-import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
-import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
 import 'package:flutter_auth/Services/firebase_auth_service.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -65,27 +63,6 @@ class _BodyState extends State<Body> {
                   Navigator.pushNamed(context, '/loginScreen');
                 },
               ),
-              // OrDivider(),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: <Widget>[
-              //     SocalIcon(
-              //       iconSrc: "assets/icons/facebook.svg",
-              //       press: () {},
-              //     ),
-              //     SocalIcon(
-              //       iconSrc: "assets/icons/twitter.svg",
-              //       press: () {},
-              //     ),
-              //     SocalIcon(
-              //       iconSrc: "assets/icons/google-plus.svg",
-              //       press: () {
-              //         Provider.of<FirebaseAuthService>(context, listen: false)
-              //             .signInWithGoogle();
-              //       },
-              //     ),
-              //   ],
-              // )
             ],
           ),
         ),

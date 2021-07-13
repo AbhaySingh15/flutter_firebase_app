@@ -87,10 +87,6 @@ class _BodyState extends State<Body> {
                     },
                   ),
                   SocalIcon(
-                    iconSrc: "assets/icons/twitter.svg",
-                    press: () {},
-                  ),
-                  SocalIcon(
                     iconSrc: "assets/icons/google-plus.svg",
                     press: () async {
                       await Provider.of<FirebaseAuthService>(context,

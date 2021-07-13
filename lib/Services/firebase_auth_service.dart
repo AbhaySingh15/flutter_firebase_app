@@ -71,14 +71,11 @@ class FirebaseAuthService with ChangeNotifier implements AuthService {
 
   @override
   Future<void> signInWithGoogle(BuildContext context) async {
-    // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
         await googleUser!.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -86,34 +83,27 @@ class FirebaseAuthService with ChangeNotifier implements AuthService {
     try {
       await _auth.signInWithCredential(credential);
       Navigator.pushNamed(context, "/loggedInScreen");
-    } on FirebaseAuthException catch (e) {
-      print(e);
+      snackBarBuilder(context: context, text: "Successfully logged in");
+    } on FirebaseAuthException catch (_) {
+      snackBarBuilder(context: context, text: "Authentication failed");
     }
   }
 
   @override
   Future<void> signInWithFacebook(BuildContext context) async {
-    final LoginResult result = await FacebookAuth.instance.login(permissions: [
-      "public_profile,email,"
-    ]); // by default we request the email and the public profile
-// or FacebookAuth.i.login()
+    final LoginResult result = await FacebookAuth.instance
+        .login(permissions: ["email", "public_profile"]);
     if (result.status == LoginStatus.success) {
-      // you are logged
       final AccessToken accessToken = result.accessToken!;
       final AuthCredential credential =
           FacebookAuthProvider.credential(accessToken.token);
       try {
         await _auth.signInWithCredential(credential);
-      } on FirebaseAuthException catch (e) {
-        print(e);
+        Navigator.pushNamed(context, "/loggedInScreen");
+        snackBarBuilder(context: context, text: "Successfully signed in");
+      } on FirebaseAuthException catch (_) {
+        snackBarBuilder(context: context, text: "Authentication failed");
       }
-      Navigator.pushNamed(context, "/loggedInScreen");
-    } else if (result.status == LoginStatus.cancelled) {
-      print("authentication cancelled by the user");
-    } else if (result.status == LoginStatus.failed) {
-      print("authentication failed");
-    } else {
-      print("something went wrong");
     }
   }
 

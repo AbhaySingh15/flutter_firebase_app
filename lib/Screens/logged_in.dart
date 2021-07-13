@@ -1,17 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Services/firebase_auth_service.dart';
 import 'package:flutter_auth/Utils/constants.dart';
 import 'package:provider/provider.dart';
 
 class LoggedIN extends StatelessWidget {
-  const LoggedIN({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<FirebaseAuthService>(context, listen: false)
         .getFireBaseAuth()
         .currentUser;
+    String? providerId;
+    String? name;
+    String? email;
+    String? userImage;
+    for (UserInfo profile in user!.providerData) {
+      providerId = profile.providerId;
+      name = profile.displayName;
+      email = profile.email;
+      userImage = profile.photoURL;
+    }
+
     return Scaffold(
         body: Center(
       child: Column(
@@ -19,7 +29,7 @@ class LoggedIN extends StatelessWidget {
         children: [
           ClipOval(
             child: CachedNetworkImage(
-              imageUrl: "${user!.photoURL}",
+              imageUrl: "$userImage",
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Image.asset(
                 "assets/images/no_image.png",
@@ -31,23 +41,15 @@ class LoggedIN extends StatelessWidget {
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
-          RichText(
-            text: TextSpan(style: TextStyle(color: Colors.black), children: [
-              TextSpan(
-                  text: "Name: ",
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: "${user.displayName}"),
-            ]),
-          ),
+          buildRichText(nonBoldText: providerId, boldText: "ProviderId"),
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
-          RichText(
-              text: TextSpan(style: TextStyle(color: Colors.black), children: [
-            TextSpan(
-                text: "Email: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            TextSpan(text: "${user.email}"),
-          ])),
+          buildRichText(nonBoldText: name, boldText: "Name"),
+          SizedBox(
+            height: Consts.loggedInPageMargin,
+          ),
+          buildRichText(nonBoldText: email, boldText: "Email"),
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
@@ -61,5 +63,16 @@ class LoggedIN extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  RichText buildRichText(
+      {required String? nonBoldText, required String boldText}) {
+    return RichText(
+      text: TextSpan(style: TextStyle(color: Colors.black), children: [
+        TextSpan(
+            text: "$boldText: ", style: TextStyle(fontWeight: FontWeight.bold)),
+        TextSpan(text: "$nonBoldText"),
+      ]),
+    );
   }
 }
