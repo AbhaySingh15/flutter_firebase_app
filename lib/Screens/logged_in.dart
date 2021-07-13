@@ -41,15 +41,15 @@ class LoggedIN extends StatelessWidget {
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
-          buildRichText(nonBoldText: providerId, boldText: "ProviderId"),
+          buildRichText(value: providerId, field: "ProviderId"),
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
-          buildRichText(nonBoldText: name, boldText: "Name"),
+          buildRichText(value: name, field: "Name"),
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
-          buildRichText(nonBoldText: email, boldText: "Email"),
+          buildRichText(value: email, field: "Email"),
           SizedBox(
             height: Consts.loggedInPageMargin,
           ),
@@ -65,13 +65,12 @@ class LoggedIN extends StatelessWidget {
     ));
   }
 
-  RichText buildRichText(
-      {required String? nonBoldText, required String boldText}) {
+  RichText buildRichText({required String? value, required String field}) {
     return RichText(
       text: TextSpan(style: TextStyle(color: Colors.black), children: [
         TextSpan(
-            text: "$boldText: ", style: TextStyle(fontWeight: FontWeight.bold)),
-        TextSpan(text: "$nonBoldText"),
+            text: "$field: ", style: TextStyle(fontWeight: FontWeight.bold)),
+        TextSpan(text: "$value"),
       ]),
     );
   }
