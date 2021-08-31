@@ -27,11 +27,10 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Consts.kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
-        darkTheme: ThemeData(
-            primaryColor: Consts.kPrimaryColor, brightness: Brightness.dark),
+        // darkTheme: ThemeData(
+        //     primaryColor: Consts.kPrimaryColor, brightness: Brightness.dark),
         routes: {
-          '/': Routes.firebaseAuthentication,
-          // '/welcomeScreen': Routes.welcomeScreen,
+          '/': Routes.homeScreen,
           '/signUpScreen': Routes.signUpScreen,
           '/loginScreen': Routes.loginScreen,
           '/loggedInScreen': Routes.loggedInScreen,

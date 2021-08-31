@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
               SizedBox(height: size.height * 0.03),
               SvgPicture.asset(
                 "assets/icons/login.svg",
-                height: size.height * 0.23,
+                height: size.height * 0.33,
               ),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
